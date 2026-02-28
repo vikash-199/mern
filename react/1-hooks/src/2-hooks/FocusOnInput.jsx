@@ -1,9 +1,12 @@
+//useRef
 import { useRef } from 'react';
 
 function FocusOnInput() {
   const inputRef = useRef(null);
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    inputRef.current.focus();
+  };
 
   return (
     <div>
