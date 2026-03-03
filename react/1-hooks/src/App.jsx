@@ -1,4 +1,5 @@
 import UserContext from './context/UserContext';
+import ApiCall from './custom-hooks/ApiCall';
 
 import UserForm from './form/UserForm';
 
@@ -10,7 +11,7 @@ const users = [
 function App() {
   return (
     <UserContext.Provider value={users}>
-      <UserForm />
+      <ApiCall />
     </UserContext.Provider>
   );
 }
