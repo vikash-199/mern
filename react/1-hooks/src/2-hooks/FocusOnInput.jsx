@@ -1,35 +1,17 @@
-// //useRef
-// import { useRef } from 'react';
-
+//useRef
 import { useRef } from 'react';
 
-// function FocusOnInput() {
-//   const inputRef = useRef(null);
-
-//   const handleClick = () => {
-//     inputRef.current.focus();
-//   };
-
-//   return (
-//     <div>
-//       <input type="text" ref={inputRef} />
-//       <button onClick={handleClick}>focus on input</button>
-//     </div>
-//   );
-// }
-
-// export default FocusOnInput;
-
 function FocusOnInput() {
-  const inputTag = useRef(null);
+  const inputRef = useRef(null);
 
   const handleClick = () => {
-    inputTag.current.focus();
+    inputRef.current.focus();
   };
+
   return (
     <div>
-      <input type="text" ref={inputTag} />
-      <button onClick={handleClick}>Focus on input</button>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>focus on input</button>
     </div>
   );
 }
