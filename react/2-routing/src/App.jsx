@@ -1,25 +1,28 @@
-import { useState } from 'react';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import { AuthProvider } from './AuthContext';
 
-const users = ['vikash', 'anup', 'niranjan', 'sunil'];
+const Home = lazy(() => import('./components/Home'));
+const Dashboard = lazy(() => import('./components/Dashboard'));
+const Users = lazy(() => import('./components/Users'));
+
 function App() {
-  const [search, setSearch] = useState('');
-
-  const filteredData = users.filter((u) =>
-    u.toLowerCase().includes(search.toLocaleLowerCase()),
-  );
-
   return (
-    <div>
-      <input
-        type="text"
-        value={search}
-        placeholder="search..."
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      {filteredData.map((u) => (
-        <p key={u}>{u}</p>
-      ))}
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* protected routes */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/users" element={<Users />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

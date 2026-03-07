@@ -12,8 +12,8 @@ function useFetch(url) {
         const res = await fetch(url);
         const result = await res.json();
         setData(result);
-      } catch (err) {
-        setError('Something worng happen ', err);
+      } catch (error) {
+        setError('Something went worng', error);
       } finally {
         setLoading(false);
       }
@@ -21,7 +21,7 @@ function useFetch(url) {
     fetchData();
   }, [url]);
 
-  return { data, error, loading };
+  return { data, loading, error };
 }
 
 export default useFetch;
