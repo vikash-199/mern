@@ -1,53 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 function useFetch(url) {
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        setIsLoading(true);
+        setLoading(true);
         const res = await fetch(url);
         const result = await res.json();
         setData(result);
       } catch (err) {
-        setError('Something went worg', err);
+        setError(err.message);
+        console.log(err);
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
     }
     fetchData();
   }, [url]);
 
-  return { data, error, isLoading };
+  return { data, error, loading };
 }
 
 export default useFetch;
 
-// import { useEffect, useState } from 'react';
-
+// import { useState, useEffect } from 'react';
 // function useFetch(url) {
 //   const [data, setData] = useState(null);
 //   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState();
+//   const [isLoading, setIsLoading] = useState(false);
 
 //   useEffect(() => {
 //     async function fetchData() {
 //       try {
-//         setLoading(true);
+//         setIsLoading(true);
 //         const res = await fetch(url);
 //         const result = await res.json();
 //         setData(result);
 //       } catch (err) {
-//         setError('Something went worng', err);
+//         setError('Something went worg', err);
 //       } finally {
-//         setLoading(false);
+//         setIsLoading(false);
 //       }
 //     }
 //     fetchData();
 //   }, [url]);
 
-//   return { data, error, loading };
+//   return { data, error, isLoading };
 // }
+
 // export default useFetch;
