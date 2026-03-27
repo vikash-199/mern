@@ -5,7 +5,7 @@ function InputBox({ text, setText }) {
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Type something..."
+        placeholder="input..."
       />
     </div>
   );
