@@ -2,7 +2,7 @@ import axios from 'axios';
 import client from '../redisClient.js';
 import { use } from 'react';
 
-export const getAllUsers = async (req, res) => {
+export const getUser = async (req, res) => {
   const userId = req.params.id;
 
   try {
